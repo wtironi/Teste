@@ -1,0 +1,22 @@
+name: CI Pipeline
+
+on: [push, pull_request]  # O workflow será executado quando houver um push ou pull request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Define o sistema operacional
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3  # Obtém o código do repositório
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Define a versão do Node.js
+
+      - name: Instalar dependências
+        run: npm install  # Instala os pacotes do projeto
+
+      - name: Rodar testes
+        run: npm test  # Executa os testes automatizados
